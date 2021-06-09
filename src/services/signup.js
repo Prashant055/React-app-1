@@ -1,17 +1,11 @@
+import axios from "axios";
 
+const url = "http://localhost:8080/api/Registration/UserRegistration";
 
-import axios from 'axios'
- 
-const uri='http://localhost:8088/user/add'
-
-
-
-class signup{
-    addUser(user){
-        return axios.post(uri,user);
-    }
+class signup {
+  addUser(user) {
+    return axios.post(url, user);
+  }
 }
- 
-export default new signup()
 
-
+export default new signup();

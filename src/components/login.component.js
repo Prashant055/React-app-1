@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoginService from "../services/login";
+
 const validateForm = (errors) => {
   let valid = true;
   //Object.values(errors).forEach((val) => val.length > 0 && (valid = false));
@@ -16,8 +17,8 @@ export default class Login extends Component {
                 <h3>Log in</h3>
 
                 <div className="form-group">
-                    <label>Username</label>
-                    <input type="text" className="form-control" placeholder="Enter username" />
+                    <label>email</label>
+                    <input type="text" className="form-control" placeholder="Enter email" />
                 </div>
                 <br/>
                 <div className="form-group">
@@ -46,7 +47,7 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       loginres: "",
-      username: "",
+      email: "",
       password: "",
       rememberMe: false,
     };
@@ -62,7 +63,7 @@ class LoginPage extends Component {
     let errors = this.state.errors;
 
     /*switch (name) {
-        case "username":
+        case "email":
           errors.id = value.length < 2 ? "invalid id" : "";
           break;
   
@@ -92,17 +93,17 @@ class LoginPage extends Component {
     e.preventDefault();
 
     if (validateForm(this.state.errors)) {
-      sessionStorage.setItem("username", this.state.username);
+      sessionStorage.setItem("email", this.state.email);
       //sessionStorage.setItem("role", this.state.choice);
 
       localStorage.setItem("rememberMe", this.state.rememberMe);
       localStorage.setItem(
-        "username",
-        this.state.rememberMe ? this.state.username : ""
+        "email",
+        this.state.rememberMe ? this.state.email : ""
       );
 
       //if (1) {
-      LoginService.loginUser(this.state.username, this.state.password).then(
+      LoginService.loginUser(this.state.email, this.state.password).then(
         (res) => {
           this.setState({ loginres: res.data });
           if (this.state.loginres === "Login Successful.") {
@@ -174,13 +175,13 @@ class LoginPage extends Component {
         <h3>Log in</h3>
 
         <div className="form-group">
-          <label>Username</label>
+          <label>Email</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Enter username"
-            name="username"
-            value={this.state.username}
+            placeholder="Enter email"
+            name="email"
+            value={this.state.email}
             onChange={this.handleChange}
           />
         </div>
